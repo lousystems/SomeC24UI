@@ -80,7 +80,9 @@ Retrieve weather details for a specific latitude, longitude, and date.
 #### Query Parameters:
 - `latitude` (Required, float/decimal between -90 and 90)
 - `longitude` (Required, float/decimal between -180 and 180)
-- `date` (Required, format: `YYYY-MM-DD`)
+- `date` (Required if `start_date` and `end_date` not provided, format: `YYYY-MM-DD`)
+- `start_date` (Required if `date` not provided, format: `YYYY-MM-DD`)
+- `end_date` (Required if `date` not provided, format: `YYYY-MM-DD`)
 - `time` (Optional, format: `HH:MM`)
 
 #### Example 1: Full Day Temperature History (24 hours)
@@ -92,7 +94,8 @@ Retrieve weather details for a specific latitude, longitude, and date.
 {
   "latitude": 48.1351,
   "longitude": 11.582,
-  "date": "1980-01-01",
+  "start_date": "1980-01-01",
+  "end_date": "1980-01-01",
   "results": [
     {
       "latitude": "48.135100",
@@ -114,7 +117,8 @@ Retrieve weather details for a specific latitude, longitude, and date.
 {
   "latitude": 48.1351,
   "longitude": 11.582,
-  "date": "1980-01-01",
+  "start_date": "1980-01-01",
+  "end_date": "1980-01-01",
   "results": [
     {
       "latitude": "48.135100",

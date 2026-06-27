@@ -207,23 +207,13 @@ Verifies that the backend has active, working connections to both PostgreSQL and
 {
   "status": "healthy",
   "database": "online",
-  "redis": "online"
+  "cache": "online"
 }
 ```
 
 ---
 
-## Historical Munich Data Pre-population Script
-A standalone script `fetch_munich_1940_2026.py` is included in the project root to fetch Munich's noon (12:00) weather records from 1940 to 2026.
 
-### How to Run:
-```powershell
-python fetch_munich_1940_2026.py
-```
-
-*Note: This script divides requests into 10-year intervals to ensure connection stability and avoid timeouts. It uses `bulk_create` with conflict ignoring to ensure duplicate records are not added.*
-
----
 
 ## Running Tests
 
