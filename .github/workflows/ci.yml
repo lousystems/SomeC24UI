@@ -10,6 +10,24 @@ jobs:
   test-backend:
     name: Backend Tests
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_DB: postgres
+          POSTGRES_USER: myuser
+          POSTGRES_PASSWORD: testpassword
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -28,9 +46,15 @@ jobs:
 
       - name: Run Django Tests
         working-directory: ./Backend
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_NAME: postgres
+          DB_USER: myuser
+          DB_PASSWORD: testpassword
+          REDIS_URL: redis://localhost:6379/0
+          SECRET_KEY: ci-dummy-secret-key
         run: |
-          # Wir setzen ein Dummy-Secret, falls die .env in CI fehlt
-          export SECRET_KEY="ci-dummy-secret-key"
           python manage.py test
 
   test-frontend:
