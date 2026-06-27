@@ -1,0 +1,6 @@
+var conSettings = new Npgsql.NpgsqlConnectionStringBuilder();
+conSettings.Host = "localhost";
+conSettings.Username = "myuser";
+conSettings.Password = "UaY7XePH97S98KXlNVbLca4DTu7LtBt6";
+conSettings.Database = "postgres";
+conSettings.Port = 5432;

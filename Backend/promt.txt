@@ -1,0 +1,16 @@
+Act as an expert Python Django Developer. I am building a backend for a coding challenge.
+I have a PostgreSQL database and a Redis instance already running in Docker on my machine. 
+
+Requirements:
+1. Create a Django project with a weather app using Django REST Framework (DRF).
+2. Configure settings.py to connect to my existing PostgreSQL and use Redis as the default Django cache. (Use environment variables or placeholders for credentials).
+3. Create a WeatherData model to store historical weather data: latitude (decimal), longitude (decimal), timestamp (datetime), and temperature (float). Ensure a unique constraint on latitude, longitude, and timestamp to prevent duplicates.
+4. Implement a Service Layer (weather_service.py) that:
+   - Queries the Open-Meteo Historical Weather API (https://open-meteo.com/en/docs/historical-weather-api).
+   - Before fetching from the external API, it checks if the data already exists in our PostgreSQL database for the requested Greater Munich Area coordinates (around Lat 48.1351, Lon 11.582).
+   - Saves newly fetched data to the database.
+5. Create an API Endpoint `GET /api/weather/` that accepts filters: `latitude`, `longitude`, `date` (YYYY-MM-DD), and optional `time` (HH:MM).
+6. Implement Django caching using Redis on this endpoint so consecutive requests are served instantly.
+7. Include a custom Django management command `python manage.py fetch_munich_1980` that pre-populates the database with the noon (12:00) temperatures for every day of the year 1980 for Munich, so the frontend has data immediately available.
+
+Please provide the complete, clean, and production-ready code with proper error handling for API failures.
