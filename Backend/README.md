@@ -18,7 +18,7 @@ A clean, production-ready Django REST Framework backend designed to fetch, cache
 
 ### 1. Prerequisites
 - **Python 3.13+**
-- **Docker** running your PostgreSQL and Redis instances.
+- **Docker** running your PostgreSQL instance.
 
 ### 2. Virtual Environment & Dependencies
 Create the environment and install packages:
@@ -42,9 +42,6 @@ DB_USER=myuser
 DB_PASSWORD=UaY7XePH97S98KXlNVbLca4DTu7LtBt6
 DB_HOST=localhost
 DB_PORT=5432
-
-# Redis Cache Settings
-REDIS_URL=redis://:aLxo8ZjmKhFNMSNZPNeph8lCAOnOEBbnOuMjuox@localhost:6379/0
 ```
 
 ---
@@ -142,7 +139,7 @@ Retrieve weather details for a specific latitude, longitude, and date.
 
 #### Response Headers (Caching verification):
 - **`X-Cache: MISS`** indicates a fresh request querying the database or external API.
-- **`X-Cache: HIT`** indicates the response was served directly and instantly from Redis.
+- **`X-Cache: HIT`** indicates the response was served directly and instantly from the memory cache.
 
 ---
 
@@ -197,7 +194,7 @@ Exposes metrics summarizing the contents, size, and historical extremes of the w
 ---
 
 ## Health Check API
-Verifies that the backend has active, working connections to both PostgreSQL and Redis cache.
+Verifies that the backend has active, working connections to both PostgreSQL and the internal memory cache.
 
 ### Endpoint:
 - **Get Health Status:** `GET /api/health/`
